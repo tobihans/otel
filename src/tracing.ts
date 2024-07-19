@@ -4,6 +4,7 @@ import {
   W3CBaggagePropagator,
 } from '@opentelemetry/core';
 import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
+import { PinoInstrumentation } from '@opentelemetry/instrumentation-pino';
 import { JaegerExporter } from '@opentelemetry/exporter-jaeger';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import { JaegerPropagator } from '@opentelemetry/propagator-jaeger';
@@ -30,7 +31,7 @@ const otelSDK = new NodeSDK({
       }),
     ],
   }),
-  instrumentations: [getNodeAutoInstrumentations()],
+  instrumentations: [getNodeAutoInstrumentations(), new PinoInstrumentation()],
 });
 
 export default otelSDK;
