@@ -1,11 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import otelSDK from './tracing';
+import { Logger } from 'nestjs-pino';
 
 async function bootstrap() {
   otelSDK.start();
 
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    bufferLogs: true,
+  });
+  app.useLogger(app.get(Logger));
+
   await app.listen(3000);
 }
 bootstrap();

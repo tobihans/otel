@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { LoggerModule } from 'nestjs-pino';
 import { OpenTelemetryModule } from 'nestjs-otel';
 
 @Module({
@@ -19,6 +20,7 @@ import { OpenTelemetryModule } from 'nestjs-otel';
         },
       },
     }),
+    LoggerModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],
