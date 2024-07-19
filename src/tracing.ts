@@ -11,7 +11,7 @@ import { B3InjectEncoding, B3Propagator } from '@opentelemetry/propagator-b3';
 import { PrometheusExporter } from '@opentelemetry/exporter-prometheus';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { AsyncLocalStorageContextManager } from '@opentelemetry/context-async-hooks';
-import process from 'process';
+import * as process from 'process';
 
 const otelSDK = new NodeSDK({
   metricReader: new PrometheusExporter({
